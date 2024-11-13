@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, TextInput, Pressable } from "react-native";
+import {
+  View,
+  Text,
+  ScrollView,
+  KeyboardAvoidingView,
+  Platform,
+} from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser, updateUser } from "../redux/userSlice";
 import { AppDispatch, RootState } from "../redux/store";
 import CustomButton from "../components/CustomButton";
+import CustomTextInput from "../components/CustomTextInput";
 
 const UserView: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -55,37 +62,45 @@ const UserView: React.FC = () => {
           User Details
         </Text>
       </View>
-      <View className="flex-1 p-2">
-        <TextInput
-          className="bg-gray-700 text-white border border-emerald-500 rounded-lg text-xl p-4 my-4"
-          value={userData.name}
-          onChangeText={(text) => handleChange("name", text)}
-          editable={isEditing}
-        />
-        <TextInput
-          className="bg-gray-700 text-white border border-emerald-500 rounded-lg text-xl p-4 my-4"
-          value={userData.username}
-          onChangeText={(text) => handleChange("username", text)}
-          editable={isEditing}
-        />
-        <TextInput
-          className="bg-gray-700 text-white border border-emerald-500 rounded-lg text-xl p-4 my-4"
-          value={userData.email}
-          onChangeText={(text) => handleChange("email", text)}
-          editable={isEditing}
-        />
-        <TextInput
-          className="bg-gray-700 text-white border border-emerald-500 rounded-lg text-xl p-4 my-4"
-          value={userData.birthDate}
-          onChangeText={(text) => handleChange("birthDate", text)}
-          editable={isEditing}
-        />
-        {isEditing ? (
-          <CustomButton onPress={handleSave} title="Save" />
-        ) : (
-          <CustomButton onPress={handleEdit} title="Edit" />
-        )}
-      </View>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={{ flex: 1 }}
+      >
+        <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+          <View className="flex-1 p-2">
+            <CustomTextInput
+              value={userData.name}
+              onChangeText={(text) => handleChange("name", text)}
+              editable={isEditing}
+              placeholder="Name"
+            />
+            <CustomTextInput
+              value={userData.username}
+              onChangeText={(text) => handleChange("username", text)}
+              editable={isEditing}
+              placeholder="Username"
+            />
+            <CustomTextInput
+              value={userData.email}
+              onChangeText={(text) => handleChange("email", text)}
+              editable={isEditing}
+              placeholder="Email"
+            />
+            <CustomTextInput
+              value={userData.birthDate}
+              onChangeText={(text) => handleChange("birthDate", text)}
+              editable={isEditing}
+              placeholder="Birth Date"
+            />
+
+            {isEditing ? (
+              <CustomButton onPress={handleSave} title="Save" />
+            ) : (
+              <CustomButton onPress={handleEdit} title="Edit" />
+            )}
+          </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
     </View>
   );
 };

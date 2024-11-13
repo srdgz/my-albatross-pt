@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, View, Text, TouchableOpacity, Dimensions } from "react-native";
+import { Modal, View, Text, Dimensions } from "react-native";
 import { LineChart } from "react-native-chart-kit";
 import CustomButton from "../components/CustomButton";
 
