@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Modal,
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  Dimensions,
-} from "react-native";
+import { Modal, View, Text, TouchableOpacity, Dimensions } from "react-native";
 import { LineChart } from "react-native-chart-kit";
 
 interface CurrencyDetailModalProps {
@@ -107,49 +100,5 @@ const CurrencyDetailModal: React.FC<CurrencyDetailModalProps> = ({
     </Modal>
   );
 };
-
-const styles = StyleSheet.create({
-  overlay: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "rgba(0, 0, 0, 0.75)",
-  },
-  modal: {
-    backgroundColor: "#1f2937",
-    borderRadius: 8,
-    padding: 16,
-    width: "80%",
-    alignItems: "center",
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "#ffffff",
-    marginBottom: 16,
-  },
-  loadingText: {
-    fontSize: 16,
-    color: "#9ca3af",
-    textAlign: "center",
-  },
-  closeButton: {
-    marginTop: 16,
-    backgroundColor: "#34d399",
-    paddingVertical: 10,
-    borderRadius: 8,
-    width: "100%",
-    alignItems: "center",
-  },
-  closeButtonText: {
-    color: "#ffffff",
-    textAlign: "center",
-    fontSize: 16,
-  },
-  chart: {
-    marginVertical: 8,
-    borderRadius: 8,
-  },
-});
 
 export default CurrencyDetailModal;
