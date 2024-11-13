@@ -11,6 +11,7 @@ import { fetchUser, updateUser } from "../redux/userSlice";
 import { AppDispatch, RootState } from "../redux/store";
 import CustomButton from "../components/CustomButton";
 import CustomTextInput from "../components/CustomTextInput";
+import Loading from "../components/Loading";
 
 const UserView: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -52,7 +53,7 @@ const UserView: React.FC = () => {
   };
 
   if (user.status === "loading") {
-    return <Text>Loading...</Text>;
+    return <Loading />;
   }
 
   return (

@@ -2,6 +2,7 @@ import React from "react";
 import { Modal, View, Text, Dimensions } from "react-native";
 import { LineChart } from "react-native-chart-kit";
 import CustomButton from "../components/CustomButton";
+import Loading from "../components/Loading";
 
 interface CurrencyDetailModalProps {
   visible: boolean;
@@ -84,9 +85,7 @@ const CurrencyDetailModal: React.FC<CurrencyDetailModalProps> = ({
               />
             </>
           ) : (
-            <Text className="text-lg text-gray-400 text-center mt-6">
-              Loading currency details...
-            </Text>
+            <Loading />
           )}
         </View>
         <CustomButton onPress={onClose} title="Close" />

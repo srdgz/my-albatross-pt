@@ -5,6 +5,7 @@ import { fetchCurrencies, fetchCurrencyDetail } from "../redux/currencySlice";
 import { AppDispatch, RootState } from "../redux/store";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import CurrencyDetailModal from "./CurrencyDetailModal";
+import Loading from "../components/Loading";
 
 const useAppDispatch: () => AppDispatch = useDispatch;
 
@@ -41,7 +42,7 @@ export default function CurrenciesScreen() {
   }, [dispatch, status]);
 
   if (status === "loading") {
-    return <Text>Loading...</Text>;
+    return <Loading />;
   }
 
   if (status === "failed") {
