@@ -3,6 +3,7 @@ import { View, Text, TextInput, Pressable } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser, updateUser } from "../redux/userSlice";
 import { AppDispatch, RootState } from "../redux/store";
+import CustomButton from "../components/CustomButton";
 
 const UserView: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -80,23 +81,9 @@ const UserView: React.FC = () => {
           editable={isEditing}
         />
         {isEditing ? (
-          <Pressable
-            onPress={handleSave}
-            className="absolute bottom-12 left-1/2 -translate-x-1/2 bg-zinc-800 border border-emerald-500 px-10 py-4 rounded-full"
-          >
-            <Text className="text-white text-center text-xl font-bold">
-              Save
-            </Text>
-          </Pressable>
+          <CustomButton onPress={handleSave} title="Save" />
         ) : (
-          <Pressable
-            onPress={handleEdit}
-            className="absolute bottom-12 left-1/2 -translate-x-1/2 bg-zinc-800 border border-emerald-500 px-10 py-4 rounded-full"
-          >
-            <Text className="text-white text-center text-xl font-bold">
-              Edit
-            </Text>
-          </Pressable>
+          <CustomButton onPress={handleEdit} title="Edit" />
         )}
       </View>
     </View>

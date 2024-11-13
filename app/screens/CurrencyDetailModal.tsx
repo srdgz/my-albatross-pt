@@ -1,6 +1,7 @@
 import React from "react";
 import { Modal, View, Text, TouchableOpacity, Dimensions } from "react-native";
 import { LineChart } from "react-native-chart-kit";
+import CustomButton from "../components/CustomButton";
 
 interface CurrencyDetailModalProps {
   visible: boolean;
@@ -88,14 +89,7 @@ const CurrencyDetailModal: React.FC<CurrencyDetailModalProps> = ({
             </Text>
           )}
         </View>
-        <TouchableOpacity
-          className="absolute bottom-12 left-1/2 -translate-x-1/2 bg-zinc-800 border border-emerald-500 px-10 py-4 rounded-full"
-          onPress={onClose}
-        >
-          <Text className="text-white text-center text-2xl font-bold">
-            Close
-          </Text>
-        </TouchableOpacity>
+        <CustomButton onPress={onClose} title="Close" />
       </View>
     </Modal>
   );
