@@ -49,15 +49,15 @@ export default function CurrenciesScreen() {
   }
 
   return (
-    <View className="flex-1 bg-zinc-800">
-      <View className="flex-row justify-between items-center py-3 border-b border-gray-500">
-        <Text className="text-2xl text-white font-bold w-1/3 text-center">
+    <View className="flex-1 bg-gray-800">
+      <View className="flex-row justify-between items-center py-4">
+        <Text className="text-2xl text-emerald-500 font-bold w-1/3 text-center">
           Currency
         </Text>
-        <Text className="text-2xl text-white font-bold w-1/3 text-center">
+        <Text className="text-2xl text-emerald-500 font-bold w-1/3 text-center">
           Rate
         </Text>
-        <Text className="text-2xl text-white font-bold w-1/3 text-center">
+        <Text className="text-2xl text-emerald-500 font-bold w-1/3 text-center">
           Chart
         </Text>
       </View>
@@ -65,14 +65,14 @@ export default function CurrenciesScreen() {
         data={list}
         keyExtractor={(item) => item.code}
         renderItem={({ item }) => (
-          <View className="flex-row justify-between items-center text-center py-4 border-b border-gray-500">
+          <View className="flex-row justify-between items-center text-center py-4 mb-2 bg-gray-700 mx-2 rounded-xl">
             <View className="w-1/3">
               <Text className="text-2xl text-white font-bold text-center">
                 {item.code}
               </Text>
             </View>
             <View className="w-1/3">
-              <Text className="text-lg text-gray-200 text-center">
+              <Text className="text-lg text-gray-200 font-semibold text-center">
                 {item.currentRate.toFixed(4)}€
               </Text>
               <View className="flex-row justify-center">

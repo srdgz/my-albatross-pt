@@ -25,7 +25,7 @@ export default function Navigation() {
         tabBarActiveTintColor: "#56D1A3",
         tabBarInactiveTintColor: "gray",
         tabBarStyle: {
-          backgroundColor: "#202427",
+          backgroundColor: "#111827",
           borderTopWidth: 0,
         },
       })}
