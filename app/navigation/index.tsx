@@ -2,6 +2,7 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 import CurrenciesScreen from "../screens/CurrenciesScreen";
+import UserScreen from "../screens/UserScreen";
 
 type IoniconName = "cash" | "cash-outline" | "person" | "person-outline";
 
@@ -31,6 +32,7 @@ export default function Navigation() {
       })}
     >
       <Tab.Screen name="Currencies" component={CurrenciesScreen} />
+      <Tab.Screen name="User" component={UserScreen} />
     </Tab.Navigator>
   );
 }
