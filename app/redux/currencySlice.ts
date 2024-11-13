@@ -1,7 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const API_URL = "https://myalbatross-technical-proof-api.pages.dev/currencies";
+const API_URL = process.env.EXPO_PUBLIC_API_URL_CURRENCIES;
+
+if (!API_URL) {
+  throw new Error("API URL is not defined");
+}
 
 export const fetchCurrencies = createAsyncThunk(
   "currencies/fetch",

@@ -2,7 +2,11 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { RootState } from "./store";
 
-const API_URL = "https://myalbatross-technical-proof-api.pages.dev/user";
+const API_URL = process.env.EXPO_PUBLIC_API_URL_USER;
+
+if (!API_URL) {
+  throw new Error("API URL is not defined");
+}
 
 export const fetchUser = createAsyncThunk("user/fetch", async () => {
   const response = await axios.get(API_URL);
