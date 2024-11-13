@@ -11,18 +11,38 @@ export const fetchCurrencies = createAsyncThunk(
   }
 );
 
+export const fetchCurrencyDetail = createAsyncThunk(
+  "currencies/fetchDetail",
+  async (currencyCode: string) => {
+    const response = await axios.get(`${API_URL}/${currencyCode}`);
+    return response.data;
+  }
+);
+
 interface CurrencyState {
   list: Array<{
     code: string;
     currentRate: number;
     differenceBetweenYesterdayRate: number;
   }>;
+  detail: {
+    code: string;
+    currentRate: number;
+    differenceBetweenYesterdayRate: number;
+    history: Array<{
+      date: string;
+      rate: number;
+    }>;
+  } | null;
   status: "idle" | "loading" | "succeeded" | "failed";
+  detailStatus: "idle" | "loading" | "succeeded" | "failed";
 }
 
 const initialState: CurrencyState = {
   list: [],
+  detail: null,
   status: "idle",
+  detailStatus: "idle",
 };
 
 const currencySlice = createSlice({
@@ -40,6 +60,17 @@ const currencySlice = createSlice({
       })
       .addCase(fetchCurrencies.rejected, (state) => {
         state.status = "failed";
+      });
+    builder
+      .addCase(fetchCurrencyDetail.pending, (state) => {
+        state.detailStatus = "loading";
+      })
+      .addCase(fetchCurrencyDetail.fulfilled, (state, action) => {
+        state.detail = action.payload;
+        state.detailStatus = "succeeded";
+      })
+      .addCase(fetchCurrencyDetail.rejected, (state) => {
+        state.detailStatus = "failed";
       });
   },
 });

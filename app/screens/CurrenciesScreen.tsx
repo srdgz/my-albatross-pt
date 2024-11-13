@@ -1,15 +1,38 @@
-import React, { useEffect } from "react";
-import { FlatList, Text, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { FlatList, Text, TouchableOpacity, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCurrencies } from "../redux/currencySlice";
+import { fetchCurrencies, fetchCurrencyDetail } from "../redux/currencySlice";
 import { AppDispatch, RootState } from "../redux/store";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import CurrencyDetailModal from "./CurrencyDetailModal";
 
 const useAppDispatch: () => AppDispatch = useDispatch;
 
 export default function CurrenciesScreen() {
   const dispatch = useAppDispatch();
   const { list, status } = useSelector((state: RootState) => state.currencies);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedCurrency, setSelectedCurrency] = useState<{
+    code: string;
+    history: Array<{ date: string; rate: number }>;
+  } | null>(null);
+
+  const handleOpenModal = async (currencyCode: string) => {
+    try {
+      const response = await dispatch(
+        fetchCurrencyDetail(currencyCode)
+      ).unwrap();
+      setSelectedCurrency(response);
+      setModalVisible(true);
+    } catch (error) {
+      console.error("Error fetching currency details:", error);
+    }
+  };
+
+  const handleCloseModal = () => {
+    setModalVisible(false);
+    setSelectedCurrency(null);
+  };
 
   useEffect(() => {
     if (status === "idle") {
@@ -69,16 +92,24 @@ export default function CurrenciesScreen() {
                 </Text>
               </View>
             </View>
-            <View className="w-1/3">
+            <TouchableOpacity
+              className="w-1/3"
+              onPress={() => handleOpenModal(item.code)}
+            >
               <Ionicons
                 name="bar-chart-outline"
                 size={24}
                 color="white"
                 className="text-center"
               />
-            </View>
+            </TouchableOpacity>
           </View>
         )}
+      />
+      <CurrencyDetailModal
+        visible={modalVisible}
+        onClose={handleCloseModal}
+        currencyData={selectedCurrency}
       />
     </View>
   );
