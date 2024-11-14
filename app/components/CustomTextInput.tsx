@@ -1,12 +1,6 @@
 import React from "react";
 import { TextInput } from "react-native";
-
-interface CustomTextInputProps {
-  value: string;
-  onChangeText: (text: string) => void;
-  editable: boolean;
-  placeholder: string;
-}
+import { CustomTextInputProps } from "../types/types";
 
 const CustomTextInput: React.FC<CustomTextInputProps> = ({
   value,

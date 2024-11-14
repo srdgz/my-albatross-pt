@@ -2,13 +2,9 @@ import React from "react";
 import { View, Text, Platform, Image } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-interface HeaderProps {
-  title?: string;
-}
-
 const ios = Platform.OS === "ios";
 
-const Header: React.FC<HeaderProps> = () => {
+const Header: React.FC = () => {
   const { top } = useSafeAreaInsets();
   return (
     <View

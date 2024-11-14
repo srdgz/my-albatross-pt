@@ -1,10 +1,6 @@
 import React from "react";
 import { Pressable, Text } from "react-native";
-
-interface CustomButtonProps {
-  onPress: () => void;
-  title: string;
-}
+import { CustomButtonProps } from "../types/types";
 
 const CustomButton: React.FC<CustomButtonProps> = ({ onPress, title }) => {
   return (

@@ -3,15 +3,7 @@ import { Modal, View, Text, Dimensions } from "react-native";
 import { LineChart } from "react-native-chart-kit";
 import CustomButton from "../components/CustomButton";
 import Loading from "../components/Loading";
-
-interface CurrencyDetailModalProps {
-  visible: boolean;
-  onClose: () => void;
-  currencyData: {
-    code: string;
-    history: Array<{ date: string; rate: number }>;
-  } | null;
-}
+import { CurrencyDetailModalProps } from "../types/types";
 
 const screenWidth = Dimensions.get("window").width;
 

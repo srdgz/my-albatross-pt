@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { initialState } from "../types/types";
 
 const API_URL = process.env.EXPO_PUBLIC_API_URL_CURRENCIES;
 
@@ -22,32 +23,6 @@ export const fetchCurrencyDetail = createAsyncThunk(
     return response.data;
   }
 );
-
-interface CurrencyState {
-  list: Array<{
-    code: string;
-    currentRate: number;
-    differenceBetweenYesterdayRate: number;
-  }>;
-  detail: {
-    code: string;
-    currentRate: number;
-    differenceBetweenYesterdayRate: number;
-    history: Array<{
-      date: string;
-      rate: number;
-    }>;
-  } | null;
-  status: "idle" | "loading" | "succeeded" | "failed";
-  detailStatus: "idle" | "loading" | "succeeded" | "failed";
-}
-
-const initialState: CurrencyState = {
-  list: [],
-  detail: null,
-  status: "idle",
-  detailStatus: "idle",
-};
 
 const currencySlice = createSlice({
   name: "currencies",

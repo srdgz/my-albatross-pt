@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { RootState } from "./store";
+import { UserState } from "../types/types";
 
 const API_URL = process.env.EXPO_PUBLIC_API_URL_USER;
 
@@ -29,15 +30,6 @@ export const updateUser = createAsyncThunk(
     return response.data;
   }
 );
-
-interface UserState {
-  id: number | null;
-  name: string;
-  username: string;
-  email: string;
-  birthDate: string;
-  status: "idle" | "loading" | "succeeded" | "failed";
-}
 
 const initialState: UserState = {
   id: null,
