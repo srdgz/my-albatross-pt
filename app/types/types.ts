@@ -53,3 +53,5 @@ export interface CustomTextInputProps {
   editable: boolean;
   placeholder: string;
 }
+
+export type IoniconName = "cash" | "cash-outline" | "person" | "person-outline";

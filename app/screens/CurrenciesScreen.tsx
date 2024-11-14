@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { FlatList, Text, TouchableOpacity, View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { fetchCurrencies, fetchCurrencyDetail } from "../redux/currencySlice";
-import { AppDispatch, RootState } from "../redux/store";
+import { RootState } from "../redux/store";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import CurrencyDetailModal from "./CurrencyDetailModal";
 import Loading from "../components/Loading";
-
-const useAppDispatch: () => AppDispatch = useDispatch;
+import { useAppDispatch } from "../constants/constants";
 
 export default function CurrenciesScreen() {
   const dispatch = useAppDispatch();

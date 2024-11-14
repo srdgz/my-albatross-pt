@@ -1,8 +1,7 @@
 import React from "react";
-import { View, Text, Platform, Image } from "react-native";
+import { View, Text, Image } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-
-const ios = Platform.OS === "ios";
+import { ios } from "../constants/constants";
 
 const Header: React.FC = () => {
   const { top } = useSafeAreaInsets();

@@ -1,13 +1,10 @@
 import React from "react";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 import CurrenciesScreen from "../screens/CurrenciesScreen";
 import UserScreen from "../screens/UserScreen";
 import Header from "../components/Header";
-
-type IoniconName = "cash" | "cash-outline" | "person" | "person-outline";
-
-const Tab = createBottomTabNavigator();
+import { IoniconName } from "../types/types";
+import { Tab } from "../constants/constants";
 
 export default function Navigation() {
   return (

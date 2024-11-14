@@ -1,11 +1,10 @@
 import React from "react";
-import { Modal, View, Text, Dimensions } from "react-native";
+import { Modal, View, Text } from "react-native";
 import { LineChart } from "react-native-chart-kit";
 import CustomButton from "../components/CustomButton";
 import Loading from "../components/Loading";
 import { CurrencyDetailModalProps } from "../types/types";
-
-const screenWidth = Dimensions.get("window").width;
+import { screenWidth } from "../constants/constants";
 
 const formatDate = (date: string) => {
   const parsedDate = new Date(date);
