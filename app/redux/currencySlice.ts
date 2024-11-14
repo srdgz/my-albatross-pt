@@ -11,16 +11,30 @@ if (!API_URL) {
 export const fetchCurrencies = createAsyncThunk(
   "currencies/fetch",
   async () => {
-    const response = await axios.get(API_URL);
-    return response.data;
+    try {
+      const response = await axios.get(API_URL);
+      return response.data;
+    } catch (error: any) {
+      console.error("Error fetching currencies:", error.message);
+      throw new Error(
+        error.response?.data?.message || "Failed to fetch currencies"
+      );
+    }
   }
 );
 
 export const fetchCurrencyDetail = createAsyncThunk(
   "currencies/fetchDetail",
   async (currencyCode: string) => {
-    const response = await axios.get(`${API_URL}/${currencyCode}`);
-    return response.data;
+    try {
+      const response = await axios.get(`${API_URL}/${currencyCode}`);
+      return response.data;
+    } catch (error: any) {
+      console.error("Error fetching currency detail:", error.message);
+      throw new Error(
+        error.response?.data?.message || "Failed to fetch currency detail"
+      );
+    }
   }
 );
 
@@ -32,24 +46,30 @@ const currencySlice = createSlice({
     builder
       .addCase(fetchCurrencies.pending, (state) => {
         state.status = "loading";
+        state.error = null;
       })
       .addCase(fetchCurrencies.fulfilled, (state, action) => {
         state.list = action.payload;
         state.status = "succeeded";
+        state.error = null;
       })
-      .addCase(fetchCurrencies.rejected, (state) => {
+      .addCase(fetchCurrencies.rejected, (state, action) => {
         state.status = "failed";
+        state.error = action.error.message || "Failed to fetch currencies";
       });
     builder
       .addCase(fetchCurrencyDetail.pending, (state) => {
         state.detailStatus = "loading";
+        state.error = null;
       })
       .addCase(fetchCurrencyDetail.fulfilled, (state, action) => {
         state.detail = action.payload;
         state.detailStatus = "succeeded";
+        state.error = null;
       })
-      .addCase(fetchCurrencyDetail.rejected, (state) => {
+      .addCase(fetchCurrencyDetail.rejected, (state, action) => {
         state.detailStatus = "failed";
+        state.error = action.error.message || "Failed to fetch currency detail";
       });
   },
 });

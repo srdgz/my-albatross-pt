@@ -10,8 +10,13 @@ if (!API_URL) {
 }
 
 export const fetchUser = createAsyncThunk("user/fetch", async () => {
-  const response = await axios.get(API_URL);
-  return response.data;
+  try {
+    const response = await axios.get(API_URL);
+    return response.data;
+  } catch (error: any) {
+    console.error("Error fetching user:", error.message);
+    throw new Error(error.response?.data?.message || "Failed to fetch user");
+  }
 });
 
 export const updateUser = createAsyncThunk(
@@ -25,9 +30,14 @@ export const updateUser = createAsyncThunk(
     },
     { getState }
   ) => {
-    const { id } = (getState() as RootState).user;
-    const response = await axios.put(`${API_URL}/${id}`, userData);
-    return response.data;
+    try {
+      const { id } = (getState() as RootState).user;
+      const response = await axios.put(`${API_URL}/${id}`, userData);
+      return response.data;
+    } catch (error: any) {
+      console.error("Error updating user:", error.message);
+      throw new Error(error.response?.data?.message || "Failed to update user");
+    }
   }
 );
 
@@ -38,6 +48,7 @@ const initialState: UserState = {
   email: "",
   birthDate: "",
   status: "idle",
+  error: null,
 };
 
 const userSlice = createSlice({
@@ -56,6 +67,7 @@ const userSlice = createSlice({
     builder
       .addCase(fetchUser.pending, (state) => {
         state.status = "loading";
+        state.error = null;
       })
       .addCase(fetchUser.fulfilled, (state, action) => {
         state.status = "succeeded";
@@ -64,13 +76,16 @@ const userSlice = createSlice({
         state.username = action.payload.username;
         state.email = action.payload.email;
         state.birthDate = action.payload.birthDate;
+        state.error = null;
       })
-      .addCase(fetchUser.rejected, (state) => {
+      .addCase(fetchUser.rejected, (state, action) => {
         state.status = "failed";
+        state.error = action.error.message || "Failed to fetch user";
       });
     builder
       .addCase(updateUser.pending, (state) => {
         state.status = "loading";
+        state.error = null;
       })
       .addCase(updateUser.fulfilled, (state, action) => {
         state.status = "succeeded";
@@ -78,9 +93,11 @@ const userSlice = createSlice({
         state.username = action.payload.username;
         state.email = action.payload.email;
         state.birthDate = action.payload.birthDate;
+        state.error = null;
       })
-      .addCase(updateUser.rejected, (state) => {
+      .addCase(updateUser.rejected, (state, action) => {
         state.status = "failed";
+        state.error = action.error.message || "Failed to update user";
       });
   },
 });

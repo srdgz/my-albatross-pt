@@ -44,8 +44,12 @@ const UserScreen: React.FC = () => {
   };
 
   const handleSave = () => {
-    dispatch(updateUser(userData));
-    setIsEditing(false);
+    try {
+      dispatch(updateUser(userData));
+      setIsEditing(false);
+    } catch (error: any) {
+      console.error("Error updating user:", error.message);
+    }
   };
 
   const handleChange = (field: string, value: string) => {

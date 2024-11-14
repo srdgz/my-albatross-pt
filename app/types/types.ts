@@ -15,6 +15,7 @@ export interface CurrencyState {
   } | null;
   status: "idle" | "loading" | "succeeded" | "failed";
   detailStatus: "idle" | "loading" | "succeeded" | "failed";
+  error: string | null;
 }
 
 export const initialState: CurrencyState = {
@@ -22,6 +23,7 @@ export const initialState: CurrencyState = {
   detail: null,
   status: "idle",
   detailStatus: "idle",
+  error: null,
 };
 
 export interface CurrencyDetailModalProps {
@@ -40,6 +42,7 @@ export interface UserState {
   email: string;
   birthDate: string;
   status: "idle" | "loading" | "succeeded" | "failed";
+  error: string | null;
 }
 
 export interface CustomButtonProps {
