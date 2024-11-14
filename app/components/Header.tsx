@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, Image } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ios } from "../utils/constants";
+import { StatusBar } from "expo-status-bar";
 
 const Header: React.FC = () => {
   const { top } = useSafeAreaInsets();
@@ -10,6 +11,7 @@ const Header: React.FC = () => {
       className="flex-row items-center justify-center px-4 py-4 bg-gray-800"
       style={{ paddingTop: ios ? top : top + 10 }}
     >
+      <StatusBar style="light" />
       <Image
         source={require("../../assets/images/icon.png")}
         style={{ width: 24, height: 24, marginRight: 4 }}
