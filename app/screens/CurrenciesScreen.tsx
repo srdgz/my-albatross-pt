@@ -6,9 +6,9 @@ import { RootState } from "../redux/store";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import CurrencyDetailModal from "./CurrencyDetailModal";
 import Loading from "../components/Loading";
-import { useAppDispatch } from "../constants/constants";
+import { useAppDispatch } from "../utils/constants";
 
-export default function CurrenciesScreen() {
+const CurrenciesScreen: React.FC = () => {
   const dispatch = useAppDispatch();
   const { list, status } = useSelector((state: RootState) => state.currencies);
   const [modalVisible, setModalVisible] = useState(false);
@@ -113,4 +113,6 @@ export default function CurrenciesScreen() {
       />
     </View>
   );
-}
+};
+
+export default CurrenciesScreen;

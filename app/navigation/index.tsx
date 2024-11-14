@@ -4,7 +4,7 @@ import CurrenciesScreen from "../screens/CurrenciesScreen";
 import UserScreen from "../screens/UserScreen";
 import Header from "../components/Header";
 import { IoniconName } from "../types/types";
-import { Tab } from "../constants/constants";
+import { Tab } from "../utils/constants";
 
 export default function Navigation() {
   return (

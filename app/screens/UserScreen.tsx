@@ -13,7 +13,7 @@ import CustomButton from "../components/CustomButton";
 import CustomTextInput from "../components/CustomTextInput";
 import Loading from "../components/Loading";
 
-const UserView: React.FC = () => {
+const UserScreen: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const user = useSelector((state: RootState) => state.user);
   const [isEditing, setIsEditing] = useState(false);
@@ -106,4 +106,4 @@ const UserView: React.FC = () => {
   );
 };
 
-export default UserView;
+export default UserScreen;

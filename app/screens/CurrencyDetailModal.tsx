@@ -4,14 +4,8 @@ import { LineChart } from "react-native-chart-kit";
 import CustomButton from "../components/CustomButton";
 import Loading from "../components/Loading";
 import { CurrencyDetailModalProps } from "../types/types";
-import { screenWidth } from "../constants/constants";
-
-const formatDate = (date: string) => {
-  const parsedDate = new Date(date);
-  const year = parsedDate.getFullYear();
-  const month = parsedDate.getMonth() + 1;
-  return `${year}-${month < 10 ? `0${month}` : month}`;
-};
+import { screenWidth } from "../utils/constants";
+import { formatDate } from "../utils/utils";
 
 const CurrencyDetailModal: React.FC<CurrencyDetailModalProps> = ({
   visible,

@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, Image } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { ios } from "../constants/constants";
+import { ios } from "../utils/constants";
 
 const Header: React.FC = () => {
   const { top } = useSafeAreaInsets();
