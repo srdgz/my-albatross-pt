@@ -40,6 +40,7 @@ Esta aplicación permite a los usuarios visualizar una lista de divisas, incluye
 - **Node.js** (versión 16 o superior).
 - **Expo CLI**: Instalación global de Expo.
 - **Android Studio** - **Xcode** - **ExpoGo**: Para emular la aplicación o ejecutarla en dispositivos reales.
+- **Tendrás que configurar las variables de entorno de llamada a la API en un archivo .env.local**
 
 ### **Pasos de Instalación**
 
